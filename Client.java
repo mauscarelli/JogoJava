@@ -29,7 +29,7 @@ public class Client extends JFrame{
         csc = new ClientSideConnection();
     }
 
-    private class ClientSideConnection{
+    private class ClientSideConnection implements Runnable{
         private Socket socket;
         private int port = 44455;
         private Scanner sc;
@@ -38,17 +38,22 @@ public class Client extends JFrame{
         public ClientSideConnection(){
             System.out.println("---Client---");
             try{
-                socket = new Socket("localhost", port);
+                socket = new Socket("200.145.219.245", port);
                 sc = new Scanner(socket.getInputStream());
                 ps = new PrintStream(socket.getOutputStream());
-                sc.next();
                 playerId = sc.nextInt();
                 System.out.println("Id do jogador: " + playerId);
                 jogador = new Player(playerId);
                 System.out.println("Vida do Centro: " + jogador.getCenterHealth());
+                Thread t = new Thread(csc);
+                t.start();
             }catch(IOException e){
                 System.out.println("Erro de IO: " + e);
             }
+        }
+
+        public void run(){
+
         }
     }
 

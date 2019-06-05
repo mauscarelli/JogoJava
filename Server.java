@@ -27,6 +27,8 @@ public class Server{
         private Scanner sc;
         private PrintStream ps;
         private int playerID;
+        private int opponentID;
+        private Player p;
 
         public ServerSideConnection(Socket s, int id){
             socket = s;
@@ -41,11 +43,11 @@ public class Server{
 
         public void run(){
             //try{
-                ps.println("ID");
                 ps.println(playerID);
-
+                p = new Player(playerID);
                 while(true){
-
+                        String s = sc.nextLine();
+                        ps.println("");
                 }
             //}catch(IOException e){
               //  System.out.println("Erro de IO: " + e);
