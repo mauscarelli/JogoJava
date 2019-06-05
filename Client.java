@@ -32,16 +32,17 @@ public class Client extends JFrame{
     private class ClientSideConnection{
         private Socket socket;
         private int port = 44455;
-        private DataInputStream dataIn;
-        private DataOutputStream dataOut;
+        private Scanner sc;
+        private PrintStream ps;
 
         public ClientSideConnection(){
             System.out.println("---Client---");
             try{
                 socket = new Socket("localhost", port);
-                dataIn = new DataInputStream(socket.getInputStream());
-                dataOut = new DataOutputStream(socket.getOutputStream());
-                playerId = dataIn.readInt();
+                sc = new Scanner(socket.getInputStream());
+                ps = new PrintStream(socket.getOutputStream());
+                sc.next();
+                playerId = sc.nextInt();
                 System.out.println("Id do jogador: " + playerId);
                 jogador = new Player(playerId);
                 System.out.println("Vida do Centro: " + jogador.getCenterHealth());

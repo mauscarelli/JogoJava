@@ -24,32 +24,32 @@ public class Server{
     private class ServerSideConnection implements Runnable{
 
         private Socket socket;
-        private DataInputStream is;
-        private DataOutputStream os;
+        private Scanner sc;
+        private PrintStream ps;
         private int playerID;
 
         public ServerSideConnection(Socket s, int id){
             socket = s;
             playerID = id;
             try{
-                is = new DataInputStream(socket.getInputStream());
-                os = new DataOutputStream(socket.getOutputStream());
+                sc = new Scanner(socket.getInputStream());
+                ps = new PrintStream(socket.getOutputStream());
             }catch(IOException e){
                 System.out.println("Erro de IO: " + e);
             }
         }
 
         public void run(){
-            try{
-                os.writeInt(playerID);
-                os.flush();
+            //try{
+                ps.println("ID");
+                ps.println(playerID);
 
                 while(true){
 
                 }
-            }catch(IOException e){
-                System.out.println("Erro de IO: " + e);
-            }
+            //}catch(IOException e){
+              //  System.out.println("Erro de IO: " + e);
+            //}
         }
 
     }
