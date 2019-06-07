@@ -1,6 +1,7 @@
 import java.net.*;
 import java.io.*;
 import java.util.*;
+import java.util.regex.Pattern;
 
 
 public class Server{
@@ -27,12 +28,14 @@ public class Server{
         private Scanner sc;
         private PrintStream ps;
         private int playerID;
+        private int playerIndice;
         private int opponentID;
         private Player p;
 
         public ServerSideConnection(Socket s, int id){
             socket = s;
             playerID = id;
+            playerIndice = id;
             try{
                 sc = new Scanner(socket.getInputStream());
                 ps = new PrintStream(socket.getOutputStream());
@@ -45,9 +48,16 @@ public class Server{
             //try{
                 ps.println(playerID);
                 p = new Player(playerID);
+                if(playerID == 2) p.setHealt(0);
                 while(true){
                         String s = sc.nextLine();
-                        ps.println("");
+                        int n = sc.nextInt();
+                        System.out.println(s + "     " + n);
+                        if(playerIndice == 1 && player2.p.getCenterHealth() == 0){
+                            System.out.println("oie");
+                            ps.println("vitoria");
+                        }
+                        //ps.println("");
                 }
             //}catch(IOException e){
               //  System.out.println("Erro de IO: " + e);
@@ -68,9 +78,11 @@ public class Server{
                     player1 = ssc;
                 }else{
                     player2 = ssc;
+                    //Thread t = new Thread(player1);
+                    //t.start();
+                    new Thread(player1).start();
+                    new Thread(player2).start();
                 }
-                Thread t = new Thread(ssc);
-                t.start();
             }
             System.out.println("Temos 2 jogadores no momento. Nao aceitando mais conexoes.");
         }catch(IOException e){

@@ -24,6 +24,9 @@ public class Player {
     public int getCenterHealth() {
         return townCenterHP;
     }
+    public void setHealt(int v){
+        townCenterHP = v;
+    }
 
     public int getCitizen() {
         return citizen;
