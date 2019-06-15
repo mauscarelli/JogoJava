@@ -66,7 +66,7 @@ public class Player {
             goldProd++;
     }
 
-    public void addCitizerFood() {
+    public void addCitizenFood() {
         if (goldProd + foodProd < citizen)
             foodProd++;
     }
@@ -81,7 +81,7 @@ public class Player {
             foodProd--;
     }
 
-    public int tickAttack(int troopDmg) {
+    public void tickAttack(int troopDmg) {
         if (troopHp > 0)
             troopHp -= troopDmg;
         townCenterHP -= troopDmg;
@@ -93,7 +93,6 @@ public class Player {
             townCenterHP = 0;
             Derrota();
         }
-        return troopAttack;
     }
 
     public void Derrota() {

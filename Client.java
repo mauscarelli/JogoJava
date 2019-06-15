@@ -29,7 +29,7 @@ public class Client extends JFrame {
         csc = new ClientSideConnection();
     }
 
-    private class ClientSideConnection{
+    private class ClientSideConnection {
         private Socket socket;
         private int port = 44455;
         private Scanner sc;
@@ -55,22 +55,32 @@ public class Client extends JFrame {
 
             @Override
             public void run() {
-                System.out.println("oi");
-                ps.println("texto");
-                ps.println(10);
-                while (true) {
-                    System.out.println("eae mens");
-                    String s = sc.nextLine();
-                    System.out.println(s);
-                    if (s.equals("vitoria")) {
-                        System.out.println("Vitoria!");
-                        break;
-                    }
+                try {
+                    System.out.println("oi");
+                    ps.println("texto");
+                    ps.println(10);
+                    while (true) {
+                        System.out.println("eae mens");
+                        String s = sc.nextLine();
+                        System.out.println(s);
+                        if (s.equals("vitoria")) {
+                            System.out.println("Vitoria!");
+                            break;
+                        } else if (s.equals("derrota")) {
+                            System.out.println("Derrota.");
+                            break;
+                        }
 
+                    }
+                    ps.close();
+                    sc.close();
+                    socket.close();
+                } catch (IOException ex) {
+                    System.out.println("Erro de IO: " + ex);
                 }
             }
         };
-    
+
     }
 
     public static void main(String[] args) {
