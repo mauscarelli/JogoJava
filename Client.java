@@ -269,7 +269,7 @@ public class Client extends JFrame implements MouseListener, ActionListener {
     public ClientSideConnection() {
       System.out.println("---Client---");
       try {
-        socket = new Socket("10.10.10.4", port);
+        socket = new Socket("localhost", port);
         sc = new Scanner(socket.getInputStream());
         ps = new PrintStream(socket.getOutputStream());
         playerId = sc.nextInt();
