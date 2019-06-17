@@ -31,6 +31,18 @@ public class Player {
     public int getCitizen() {
         return citizen;
     }
+    public int getFood() {
+        return food;
+    }
+    public int getGold() {
+        return gold;
+    }
+    public int getCitizenFood() {
+        return foodProd;
+    }
+    public int getCitizenGold() {
+        return goldProd;
+    }
 
     public int getTroopAttack() {
         return troopAttack;
@@ -48,11 +60,11 @@ public class Player {
     }
 
     public void addSoldier() {
-        if (food >= 20 && gold >= 15) {
-            troopAttack += 5;
+        if (food >= 20 && gold >= 40) {
+            troopAttack += 2;
             troopHp += 20;
             food -= 20;
-            gold -= 15;
+            gold -= 40;
         }
     }
 
